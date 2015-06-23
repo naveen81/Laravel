@@ -17,7 +17,26 @@
     <![endif]-->
   </head>
   <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="http://abes.ac.in/templates/gk_university/images/logo1.png">
+        </a>
+      </div>
+    </div>
+  </nav>
   <div class="container">
+
+<div class="alert alert-danger" role="alert">
+<ul>
+  @foreach ($errors->all() as $error)
+
+          <li>{{ $error }}</li>
+
+  @endforeach
+  </ul>
+   </div>
 
    @yield('content')
    </div>

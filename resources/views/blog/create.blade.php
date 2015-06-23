@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
 @section('title')
-Create Blog Page
+Create Blog
 @stop
 
 

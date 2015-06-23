@@ -13,7 +13,7 @@ class BlogCreateRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,7 @@ class BlogCreateRequest extends Request
     public function rules()
     {
         return [
+            'title' => 'required|alpha-dash|between:10,30'
             //
         ];
     }

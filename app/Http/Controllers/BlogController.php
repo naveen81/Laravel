@@ -1,12 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\Blog;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogCreateRequest;
 use Illuminate\Support\Facades\Input;
-class BlogController extends Controller
-{
+class BlogController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +12,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
-        //code to send this $blogs array to view
+        $blogs = Blog::all()->toArray();
+        return view('blog.list', compact('blogs'));
     }
     /**
      * Show the form for creating a new resource.
@@ -31,42 +29,38 @@ class BlogController extends Controller
      *
      * @return Response
      */
-    public function store(Requests\BlogCreateRequest $request)
+    public function store(BlogCreateRequest $request)
     {
-
         $blog = new Blog();
-        $blog ->title = $request->get('title');
+        $blog->title = $request->get('title');
         $blog->content = $request->get('content');
         $blog->save();
-
-        return 'Your Blog created successfully. Id is'. $blog->id;
+        return 'Your blog created successfully. Id is ' . $blog->id;
     }
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($id)
     {
         $blog = Blog::find($id);
-
-        dd($blog->title, $blog->content);
+        return view('blog.view', $blog->toArray());
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
     {
-        //
     }
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
@@ -76,7 +70,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)

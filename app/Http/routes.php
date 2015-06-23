@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('articles/','BlogController@index');
 
 Route::resource('articles','BlogController');
